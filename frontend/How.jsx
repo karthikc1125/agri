@@ -1,4 +1,13 @@
 import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
 import "./How.css";
 
 export default function How() {
@@ -42,18 +51,57 @@ export default function How() {
         <p>From data to decisions — simple steps to empower farmers.</p>
       </div>
 
-      <div className="steps">
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            className="step-card fade-up"
-            data-step={index + 1}
-          >
-            <div className="step-icon">{step.icon}</div>
-            <h3>{step.title}</h3>
-            <p>{step.desc}</p>
-          </div>
-        ))}
+      <div className="steps-container">
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          spaceBetween={30}
+          slidesPerView={1}
+          autoplay={{
+            delay: 4000,
+            disableOnInteraction: false,
+            pauseOnHover: true,
+          }}
+          pagination={{ clickable: true }}
+          navigation={{
+            prevEl: ".custom-prev",
+            nextEl: ".custom-next",
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+            1280: {
+              slidesPerView: 3,
+            },
+          }}
+          className="how-swiper"
+        >
+          {steps.map((step, index) => (
+            <SwiperSlide key={index}>
+              <div
+                className="step-card fade-up"
+                data-step={index + 1}
+              >
+                <div className="step-icon">{step.icon}</div>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <button className="custom-prev" aria-label="Previous slide">
+          <LuChevronLeft />
+        </button>
+        <button className="custom-next" aria-label="Next slide">
+          <LuChevronRight />
+        </button>
       </div>
     </section>
   );

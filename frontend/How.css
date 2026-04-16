@@ -46,22 +46,92 @@
   margin-bottom: 50px;
 }
 
-.steps {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+.steps-container {
+  padding: 10px 0 50px;
+  position: relative;
+}
+
+.how-swiper {
+  padding: 20px 0 60px !important;
+  overflow: hidden;
+}
+
+/* Customizing Navigation Buttons (React Icons) */
+.custom-prev,
+.custom-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #22c55e;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+}
+
+.custom-prev:hover,
+.custom-next:hover {
+  background: #16a34a;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+}
+
+.custom-prev {
+  left: -30px;
+}
+
+.custom-next {
+  right: -30px;
+}
+
+.custom-prev.swiper-button-disabled,
+.custom-next.swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Customizing Swiper Pagination */
+.how-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #22c55e;
+  opacity: 0.2;
+  transition: all 0.3s ease;
+}
+
+.how-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 25px;
+  border-radius: 5px;
 }
 
 .step-card {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   border-radius: 16px;
-  padding: 30px 20px;
+  padding: 40px 25px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: all 0.35s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid rgba(34, 197, 94, 0.2);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
 }
 
 .step-card:hover {
@@ -111,13 +181,27 @@
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(20px, 20px); }
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(20px, 20px);
+  }
 }
 
 .fade-up {
@@ -126,15 +210,51 @@
 }
 
 @keyframes fadeUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
+
 .slide-in {
   animation: slideIn 1s ease forwards;
   opacity: 0;
 }
 
 @keyframes slideIn {
-  from { transform: translateX(-100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .steps-container {
+    padding: 10px 20px 40px;
+  }
+  .how-swiper {
+    padding: 20px 0 60px !important;
+  }
+  .custom-prev,
+  .custom-next {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+  .custom-prev {
+    left: -10px;
+  }
+  .custom-next {
+    right: -10px;
+  }
 }
